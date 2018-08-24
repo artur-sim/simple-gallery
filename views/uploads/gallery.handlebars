@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>Image gallery</h3>
+    {{#if image}} {{#each image}}
+    <img src="/{{img}}" class="img-thumbnail">
+    <form action="/uploads/delete/{{id}}?_method=DELETE" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger mt-5 mb-5">Delete picture</button>
+    </form>
+    {{/each}} {{else}}
+    <p>no images</p>
+
+    {{/if}}
+</div>
