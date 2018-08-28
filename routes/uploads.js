@@ -39,16 +39,16 @@ router.get('/gallery', (req, res) => {
         // })
 
         // res.setHeader('content-type', image[0].img.contentType);
-        // let imageArray = []
-        // let getBuffer = pic.forEach(element => {
+        let imageArray = []
+        let getBuffer = image.forEach(element => {
 
-        //     imageArray.push(Buffer.from(element.img.data).toString('base64'))
-        // })
+            imageArray.push(Buffer.from(element.img.data).toString('base64'))
+        })
 
         // var thumb = Buffer.from(element.img.data).toString('base64')
 
         res.render('uploads/gallery', {
-            image: image
+            image: imageArray
         })
         // res.send(image[0].img.data)
     })
