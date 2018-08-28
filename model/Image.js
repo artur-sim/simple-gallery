@@ -6,6 +6,9 @@ const ImageSchema = new Schema({
         data: Buffer,
         contentType: String
 
+    },
+    title: {
+        type: String
     }
 })
 

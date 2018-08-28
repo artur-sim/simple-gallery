@@ -42,13 +42,20 @@ router.get('/gallery', (req, res) => {
         let imageArray = []
         let getBuffer = image.forEach(element => {
 
-            imageArray.push(Buffer.from(element.img.data).toString('base64'))
+            imageArray.push({
+                pic: Buffer.from(element.img.data).toString('base64'),
+                id: element._id
+            })
+
         })
 
-        // var thumb = Buffer.from(element.img.data).toString('base64')
 
+
+        // var thumb = Buffer.from(element.img.data).toString('base64')
+        // console.log(imageArray)
         res.render('uploads/gallery', {
             image: imageArray
+
         })
         // res.send(image[0].img.data)
     })
@@ -64,9 +71,10 @@ router.post('/', upload.single('img'), (req, res) => {
 
     picture.img.data = fs.readFileSync(req.file.path);
     picture.img.contentType = req.file.mimetype;
-
+    picture.title = req.file.filename;
 
     picture.save().then((image) => {
+
         res.redirect('uploads/gallery')
     })
 })
@@ -77,7 +85,8 @@ router.delete('/delete/:id', (req, res) => {
         _id: req.params.id
     }).then(image => {
         image.remove();
-        fs.unlink(image.img.data, () => {
+        console.log(image.title)
+        fs.unlink(`images/${image.title}`, () => {
             console.log('File deleted')
         })
         res.redirect('/uploads/gallery')
