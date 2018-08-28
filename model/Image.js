@@ -6,8 +6,7 @@ const ImageSchema = new Schema({
         data: Buffer,
         contentType: String
 
-    },
-
+    }
 })
 
 mongoose.model('image', ImageSchema);
