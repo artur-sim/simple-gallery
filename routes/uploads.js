@@ -64,7 +64,7 @@ router.post('/', upload.single('img'), (req, res) => {
 
     picture.img.data = fs.readFileSync(req.file.path);
     picture.img.contentType = req.file.mimetype;
-    picture.title = req.file.filename;
+
 
     picture.save().then((image) => {
         res.redirect('uploads/gallery')

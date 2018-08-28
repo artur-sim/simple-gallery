@@ -7,9 +7,7 @@ const ImageSchema = new Schema({
         contentType: String
 
     },
-    title: {
-        type: String
-    }
+
 })
 
 mongoose.model('image', ImageSchema);
